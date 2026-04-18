@@ -110,35 +110,36 @@
     {
       "card_id": "discover_it",
       "year": 2026,
+      "quarter": 1,
+      "start_date": "2026-01-01",
+      "end_date": "2026-03-31",
+      "categories": [
+        "Grocery Stores",
+        "Wholesale Clubs",
+        "Select Streaming Services"
+      ]
+    },
+    {
+      "card_id": "discover_it",
+      "year": 2026,
       "quarter": 2,
       "start_date": "2026-04-01",
       "end_date": "2026-06-30",
       "categories": [
-        "Gas Stations",
-        "EV Charging",
+        "Restaurants",
         "Home Improvement Stores"
       ]
     },
     {
-      "card_id": "discover_it",
+      "card_id": "chase_freedom",
       "year": 2026,
-      "quarter": 3,
-      "start_date": "2026-07-01",
-      "end_date": "2026-09-30",
+      "quarter": 1,
+      "start_date": "2026-01-01",
+      "end_date": "2026-03-31",
       "categories": [
-        "Restaurants",
-        "Streaming Services"
-      ]
-    },
-    {
-      "card_id": "discover_it",
-      "year": 2026,
-      "quarter": 4,
-      "start_date": "2026-10-01",
-      "end_date": "2026-12-31",
-      "categories": [
-        "Amazon.com",
-        "Target"
+        "Norwegian Cruise Line",
+        "Dining",
+        "American Heart Association"
       ]
     },
     {
@@ -148,20 +149,9 @@
       "start_date": "2026-04-01",
       "end_date": "2026-06-30",
       "categories": [
-        "Groceries",
-        "Gym Memberships",
-        "Select Streaming"
-      ]
-    },
-    {
-      "card_id": "chase_freedom",
-      "year": 2026,
-      "quarter": 3,
-      "start_date": "2026-07-01",
-      "end_date": "2026-09-30",
-      "categories": [
-        "Gas Stations",
-        "Live Entertainment"
+        "Amazon and Whole Foods Market",
+        "Chase Travel",
+        "Feeding America"
       ]
     }
   ]
