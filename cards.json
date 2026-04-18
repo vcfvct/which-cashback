@@ -1,0 +1,168 @@
+{
+  "cards": [
+    {
+      "id": "discover_it",
+      "name": "Discover It",
+      "issuer": "Discover",
+      "base_rates": [
+        "1% everywhere"
+      ],
+      "permanent_categories": [],
+      "has_rotating": true
+    },
+    {
+      "id": "chase_freedom",
+      "name": "Chase Freedom",
+      "issuer": "Chase",
+      "base_rates": [
+        "1% on general purchases"
+      ],
+      "permanent_categories": [],
+      "has_rotating": true
+    },
+    {
+      "id": "blue_cash_everyday",
+      "name": "Blue Cash Everyday",
+      "issuer": "American Express",
+      "base_rates": [
+        "1% on other eligible purchases"
+      ],
+      "permanent_categories": [
+        "3% U.S. supermarkets",
+        "3% U.S. gas stations",
+        "3% U.S. online retail purchases"
+      ],
+      "has_rotating": false
+    },
+    {
+      "id": "citi_custom_cash",
+      "name": "Citi Custom Cash",
+      "issuer": "Citi",
+      "base_rates": [
+        "1% on all other purchases"
+      ],
+      "permanent_categories": [
+        "5% on highest eligible spend category each billing cycle",
+        "Restaurants",
+        "Gas Stations",
+        "Grocery Stores",
+        "Home Improvement Stores"
+      ],
+      "has_rotating": false
+    },
+    {
+      "id": "citi_double_cash",
+      "name": "Citi Double Cash",
+      "issuer": "Citi",
+      "base_rates": [
+        "2% everywhere"
+      ],
+      "permanent_categories": [],
+      "has_rotating": false
+    },
+    {
+      "id": "citi_costco_anywhere",
+      "name": "Costco Anywhere Visa",
+      "issuer": "Citi",
+      "base_rates": [
+        "1% on other purchases"
+      ],
+      "permanent_categories": [
+        "4% eligible gas and EV charging",
+        "3% restaurants",
+        "3% eligible travel",
+        "2% Costco and Costco.com"
+      ],
+      "has_rotating": false
+    },
+    {
+      "id": "capital_one_savor",
+      "name": "Capital One Savor",
+      "issuer": "Capital One",
+      "base_rates": [
+        "1% on other purchases"
+      ],
+      "permanent_categories": [
+        "3% dining",
+        "3% grocery stores",
+        "3% entertainment",
+        "3% popular streaming services"
+      ],
+      "has_rotating": false
+    },
+    {
+      "id": "wells_fargo_autograph",
+      "name": "Wells Fargo Autograph",
+      "issuer": "Wells Fargo",
+      "base_rates": [
+        "1X on other purchases"
+      ],
+      "permanent_categories": [
+        "3X restaurants",
+        "3X travel",
+        "3X gas stations",
+        "3X phone plans"
+      ],
+      "has_rotating": false
+    }
+  ],
+  "rotating_categories": [
+    {
+      "card_id": "discover_it",
+      "year": 2026,
+      "quarter": 2,
+      "start_date": "2026-04-01",
+      "end_date": "2026-06-30",
+      "categories": [
+        "Gas Stations",
+        "EV Charging",
+        "Home Improvement Stores"
+      ]
+    },
+    {
+      "card_id": "discover_it",
+      "year": 2026,
+      "quarter": 3,
+      "start_date": "2026-07-01",
+      "end_date": "2026-09-30",
+      "categories": [
+        "Restaurants",
+        "Streaming Services"
+      ]
+    },
+    {
+      "card_id": "discover_it",
+      "year": 2026,
+      "quarter": 4,
+      "start_date": "2026-10-01",
+      "end_date": "2026-12-31",
+      "categories": [
+        "Amazon.com",
+        "Target"
+      ]
+    },
+    {
+      "card_id": "chase_freedom",
+      "year": 2026,
+      "quarter": 2,
+      "start_date": "2026-04-01",
+      "end_date": "2026-06-30",
+      "categories": [
+        "Groceries",
+        "Gym Memberships",
+        "Select Streaming"
+      ]
+    },
+    {
+      "card_id": "chase_freedom",
+      "year": 2026,
+      "quarter": 3,
+      "start_date": "2026-07-01",
+      "end_date": "2026-09-30",
+      "categories": [
+        "Gas Stations",
+        "Live Entertainment"
+      ]
+    }
+  ]
+}

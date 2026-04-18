@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Which Cashback</title>
+    <link rel="stylesheet" href="styles.css?v=20260418" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Static card reference</p>
+        <h1>Which Cashback</h1>
+        <p class="hero-copy">
+          Compare your cards, see their standard rewards, and check active rotating categories.
+        </p>
+      </header>
+
+      <main id="app" class="app-shell" aria-live="polite">
+        <section class="panel loading-panel">
+          <p>Loading card data...</p>
+        </section>
+      </main>
+    </div>
+
+    <template id="list-template">
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Homepage</p>
+            <h2>Available Cards</h2>
+          </div>
+          <p class="section-copy">Select a card to see its cashback details.</p>
+        </div>
+        <div class="card-grid" data-card-list></div>
+      </section>
+    </template>
+
+    <template id="detail-template">
+      <section class="panel detail-panel">
+        <div class="detail-header">
+          <a href="#/" class="back-link" aria-label="Back to cards overview">
+            <span class="back-link-icon" aria-hidden="true">&larr;</span>
+            <span>Back to cards</span>
+          </a>
+          <div>
+            <p class="section-kicker" data-issuer></p>
+            <h2 data-card-name></h2>
+          </div>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-section">
+            <h3>Base Rates</h3>
+            <ul class="tag-list" data-base-rates></ul>
+          </article>
+
+          <article class="detail-section">
+            <h3>Permanent Categories</h3>
+            <ul class="tag-list" data-permanent-categories></ul>
+          </article>
+
+          <article class="detail-section detail-section-wide">
+            <div class="rotating-header">
+              <h3>Rotating Categories</h3>
+              <span class="status-pill" data-rotating-status></span>
+            </div>
+            <div data-rotating-content></div>
+          </article>
+        </div>
+      </section>
+    </template>
+
+    <script type="module" src="app.js?v=20260418"></script>
+  </body>
+</html>
