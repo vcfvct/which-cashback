@@ -4,16 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Which Cashback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css?v=20260418" />
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
-        <p class="eyebrow">Static card reference</p>
-        <h1>Which Cashback</h1>
-        <p class="hero-copy">
-          Compare your cards, see their standard rewards, and check active rotating categories.
-        </p>
+        <div class="hero-copy-block">
+          <p class="eyebrow">Static card reference</p>
+          <div class="hero-inline">
+            <h1>Which Cashback</h1>
+            <p class="hero-copy">
+              Compare cards and open one for current rewards in a tap.
+            </p>
+          </div>
+        </div>
       </header>
 
       <main id="app" class="app-shell" aria-live="polite">
@@ -27,10 +37,11 @@
       <section class="panel">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">Homepage</p>
             <h2>Available Cards</h2>
           </div>
-          <p class="section-copy">Select a card to see its cashback details.</p>
+          <p class="section-copy" data-list-summary>
+            Select a card to see its cashback details.
+          </p>
         </div>
         <div class="card-grid" data-card-list></div>
       </section>
@@ -46,7 +57,23 @@
           <div>
             <p class="section-kicker" data-issuer></p>
             <h2 data-card-name></h2>
+            <p class="detail-copy" data-card-summary></p>
           </div>
+        </div>
+
+        <div class="detail-overview" aria-label="Card overview">
+          <article class="overview-card">
+            <p class="overview-label">Reward model</p>
+            <p class="overview-value" data-reward-model></p>
+          </article>
+          <article class="overview-card">
+            <p class="overview-label">Base rate</p>
+            <p class="overview-value" data-base-highlight></p>
+          </article>
+          <article class="overview-card">
+            <p class="overview-label">Best fit</p>
+            <p class="overview-value" data-top-category></p>
+          </article>
         </div>
 
         <div class="detail-grid">

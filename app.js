@@ -4,6 +4,10 @@ const detailTemplate = document.querySelector("#detail-template");
 
 let store = null;
 
+function pluralize(count, singular, plural = `${singular}s`) {
+  return `${count} ${count === 1 ? singular : plural}`;
+}
+
 async function loadCards() {
   const response = await fetch("./cards.json", { cache: "no-store" });
 
@@ -82,13 +86,17 @@ function createTagList(items, emptyMessage) {
   return list;
 }
 
+function formatRotatingCategories(categories) {
+  return categories;
+}
+
 function getHomeSummary(card) {
   if (card.has_rotating) {
     const { current } = getRotatingState(card.id, store.rotating_categories);
 
     return {
-      title: current ? `Current Categories: Q${current.quarter} ${current.year}` : "Current Categories",
-      items: current?.categories || [],
+      title: current ? `Current 5% Categories: Q${current.quarter} ${current.year}` : "Current 5% Categories",
+      items: current ? formatRotatingCategories(current.categories) : [],
       emptyMessage: "No active rotating categories.",
     };
   }
@@ -108,13 +116,54 @@ function getHomeSummary(card) {
   };
 }
 
+function getDetailSummary(card) {
+  if (card.has_rotating) {
+    const rotatingState = getRotatingState(card.id, store.rotating_categories);
+
+    if (rotatingState.current) {
+      return `5% rotating cashback card with live Q${rotatingState.current.quarter} ${rotatingState.current.year} categories and ${pluralize(rotatingState.upcoming.length, "upcoming quarter")}.`;
+    }
+
+    return `5% rotating cashback card with no active quarter right now and ${pluralize(rotatingState.upcoming.length, "upcoming quarter")}.`;
+  }
+
+  if (card.permanent_categories.length) {
+    return `Fixed rewards card featuring ${pluralize(card.permanent_categories.length, "bonus category")} plus a standard base earn rate.`;
+  }
+
+  return "Straightforward flat-rate style card with no listed bonus categories.";
+}
+
+function getOverviewContent(card) {
+  const rotatingState = card.has_rotating ? getRotatingState(card.id, store.rotating_categories) : null;
+  const rewardModel = card.has_rotating
+    ? rotatingState.current
+      ? "5% rotating rewards, active now"
+      : "5% rotating rewards"
+    : card.permanent_categories.length
+      ? "Fixed bonus categories"
+      : "Flat everyday rewards";
+  const baseHighlight = card.base_rates[0] || "No base rate listed";
+  const topCategory = card.has_rotating
+    ? rotatingState?.current?.categories[0]
+      ? rotatingState.current.categories[0]
+      : "Awaiting next quarter"
+    : card.permanent_categories[0] || "General purchases";
+
+  return { rewardModel, baseHighlight, topCategory };
+}
+
 function renderList() {
   const fragment = listTemplate.content.cloneNode(true);
   const cardList = fragment.querySelector("[data-card-list]");
+  const listSummary = fragment.querySelector("[data-list-summary]");
+
+  const rotatingCards = store.cards.filter((card) => card.has_rotating).length;
+  listSummary.textContent = `${pluralize(store.cards.length, "card")} total, ${pluralize(rotatingCards, "rotating card")}.`;
 
   store.cards.forEach((card) => {
     const link = document.createElement("a");
-    link.className = "card-link";
+    link.className = `card-link ${card.has_rotating ? "card-link-rotating" : "card-link-fixed"}`;
     link.href = `#/card/${encodeURIComponent(card.id)}`;
 
     const rotatingState = getRotatingState(card.id, store.rotating_categories);
@@ -136,11 +185,11 @@ function renderList() {
     statusRow.className = "chip-row";
 
     const cardType = document.createElement("span");
-    cardType.className = "chip";
+    cardType.className = `chip card-type-chip ${card.has_rotating ? "card-type-chip-rotating" : "card-type-chip-fixed"}`;
     cardType.textContent = card.has_rotating ? "Rotating" : "Fixed";
 
     const currentStatus = document.createElement("span");
-    currentStatus.className = "chip";
+    currentStatus.className = `chip card-status-chip ${card.has_rotating ? "card-status-chip-rotating" : "card-status-chip-fixed"}`;
     currentStatus.textContent = activeLabel;
 
     statusRow.append(cardType, currentStatus);
@@ -163,10 +212,10 @@ function renderCurrentQuarter(entry) {
   const wrapper = document.createElement("section");
   wrapper.className = "quarter-card";
   wrapper.innerHTML = `
-    <h4>Current Quarter: Q${entry.quarter} ${entry.year}</h4>
+    <h4>Current 5% Quarter: Q${entry.quarter} ${entry.year}</h4>
     <p class="quarter-range">${formatDateRange(entry)}</p>
   `;
-  wrapper.append(createTagList(entry.categories, "No categories listed."));
+  wrapper.append(createTagList(formatRotatingCategories(entry.categories), "No categories listed."));
   return wrapper;
 }
 
@@ -186,10 +235,10 @@ function renderUpcoming(entries) {
     const card = document.createElement("article");
     card.className = "upcoming-card";
     card.innerHTML = `
-      <h4>Upcoming: Q${entry.quarter} ${entry.year}</h4>
+      <h4>Upcoming 5% Quarter: Q${entry.quarter} ${entry.year}</h4>
       <p class="quarter-range">${formatDateRange(entry)}</p>
     `;
-    card.append(createTagList(entry.categories, "No categories listed."));
+    card.append(createTagList(formatRotatingCategories(entry.categories), "No categories listed."));
     wrapper.append(card);
   });
 
@@ -241,11 +290,20 @@ function renderDetail(cardId) {
   const fragment = detailTemplate.content.cloneNode(true);
   fragment.querySelector("[data-issuer]").textContent = card.issuer;
   fragment.querySelector("[data-card-name]").textContent = card.name;
+  fragment.querySelector("[data-card-summary]").textContent = getDetailSummary(card);
 
   const baseRates = fragment.querySelector("[data-base-rates]");
   const permanentCategories = fragment.querySelector("[data-permanent-categories]");
   const rotatingStatus = fragment.querySelector("[data-rotating-status]");
   const rotatingContent = fragment.querySelector("[data-rotating-content]");
+  const rewardModel = fragment.querySelector("[data-reward-model]");
+  const baseHighlight = fragment.querySelector("[data-base-highlight]");
+  const topCategory = fragment.querySelector("[data-top-category]");
+
+  const overview = getOverviewContent(card);
+  rewardModel.textContent = overview.rewardModel;
+  baseHighlight.textContent = overview.baseHighlight;
+  topCategory.textContent = overview.topCategory;
 
   baseRates.replaceWith(createTagList(card.base_rates, "No base rates listed."));
   permanentCategories.replaceWith(
