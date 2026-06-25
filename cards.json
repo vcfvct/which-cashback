@@ -131,6 +131,18 @@
       ]
     },
     {
+      "card_id": "discover_it",
+      "year": 2026,
+      "quarter": 3,
+      "start_date": "2026-07-01",
+      "end_date": "2026-09-30",
+      "categories": [
+        "Gas Stations",
+        "Transportation",
+        "Drug Stores"
+      ]
+    },
+    {
       "card_id": "chase_freedom",
       "year": 2026,
       "quarter": 1,
@@ -152,6 +164,18 @@
         "Amazon and Whole Foods Market",
         "Chase Travel",
         "Feeding America"
+      ]
+    },
+    {
+      "card_id": "chase_freedom",
+      "year": 2026,
+      "quarter": 3,
+      "start_date": "2026-07-01",
+      "end_date": "2026-09-30",
+      "categories": [
+        "Gas Stations",
+        "Public Transit",
+        "EV Charging"
       ]
     }
   ]
